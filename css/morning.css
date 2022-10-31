@@ -1,0 +1,257 @@
+@charset "utf-8";
+
+*   {
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+}
+html,body { /*전체 설정*/
+    font: 10pt "나눔고딕";
+    color: #666;
+}
+img {   /*모든 이미지를 블록레벨로 변경(설정)*/
+    display: block;
+    max-width: 100%;
+}
+a   {
+    text-decoration: none; /*링크 특유 기본 표시 지우겠다*/
+    color: #666;
+    display: block;
+}
+a:hover {  /*<a>태그 요소들에 마우스 가져다대면 텍스트 밑줄 되게 하겠다*/
+    text-decoration: underline;
+    color: #004f8a;  /*주조색*/
+}
+
+#layout {
+    width: 1100px;
+    height: 1200px;
+    border: 3px solid pink;
+    margin: auto;  /*중앙정렬*/
+}
+
+/*상단*/
+header  {
+    height: 200px;  /*상단높이 200픽셀 (==>시험지에 써있음)*/
+    /*border: 3px solid red;  틀 잡을 때 위치와 크기 확인하기 위해 border 작성 (아래에 작성했던 것들은 전부 지움*/
+    display: flex;  /*<header>속 자식들인 메뉴들의 위치가 움직임*/
+}
+/*상단로고*/
+header>a {
+    /*margin-top: 50px;
+    margin-right: 100px;  선생님의 코드 (아래는 내가 설정한 코드)*/
+    margin: auto;
+    margin-right: 50px;
+}
+/*상단 메뉴들 (로고 오른쪽 부분)*/
+header>nav {  /*<header>내부의 수많은 자식(바로 아래 요소)인 nav 설정하겠다*/
+    display: flex;  /*부모 입장*/  /*display:flex하면 아이템들이 길어지는 경향이 있음. 따라서 부모 입장 쪽으로 와서 align해줌*/
+    align-items: flex-start;  /*center하면 디자인 잡기 어려움. flex-start로 상단에 붙여서 세로정렬.*/
+    /*<nav>속에 있는 것들 flex 설정해서 전부 다 세로정렬 되었던 게 <nav>속 <a>,<div>,<div>는 가로로 정렬됨(각각 그 속의 것들은 세로정렬)*/
+    flex: 1;  /*자식 입장*/
+    /*width:100%;를 하지 않고 flex:1;로 설정함. 로고부분은 자동으로 flex:0이 되는데, flex:0의 의미는 영역을 아예 안 주는 게 아니라 딱 필요한 정도만 주게 됨*/
+    margin-top: 50px;
+    text-align: center;
+}
+header>nav>a {flex: 1;}  /*펜션소개 메뉴*/
+header div {  /*룸 미리보기&커뮤티니 메뉴 (둘 다 해당됨)   header의 수많은 자손들 중 div들에 설정*/
+    flex: 1;
+    position: relative;
+}  /*<header>에 메뉴들을 1:1:1로 설정함(==>모두 flex:1; 해서 설정)  --> 아예 justify-content: space-between; 하는 건..?*/
+
+/*메인메뉴*/
+.mainMenu {
+    padding: 13px 0 15px 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: black;
+}
+/* .mainMenu:hover + .subMenu {  메인메뉴에 마우스대면 서브메뉴 보이게 하기
+    .mainMenu와 형제(+)인 .subMenu에 대한 설정
+    display: block; 하위메뉴 선택이 안됨(사용불가) 프로그램 짜야 됨
+} */ /* .mainMenu.active는 클래스 두 개를 선택한 것*/
+.mainMenu:hover, .mainMenu.active {  /*mainMenu클래스가 hover될 때와 active클래스에서 적용시킬 것*/
+    background: #004f8a; color: white; 
+    text-decoration: none;
+} /*active는 html에 생성한 클래스가 아니고, js에서 프로그램 짠 addClass("active")로 인해 subMenu에 마우스 올라가면 생성됨*/
+/* ==> class="mainMenu" 였다가 마우스 올라가면 class="mainMenu active"가 됨 ==> 마우스우클릭->검사 에서 확인 가능*/
+
+/*서브메뉴*/
+.subMenu  {
+    position: absolute;  /*보였다가 안보였다가 하기 위해 설정.  위에 position:relative 해줘야 너비가 맞아짐. 안그러면 틀에서 벗어남*/
+    background: white;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+    width: 100%;  /*이거 안하면 absolute의 영향으로 슬림해짐. 늘리기 위해 width:100%;*/
+    padding: 10px;
+    display: none;  /*서브메뉴 안보임 => 마우스 대면 보이게 하기 위해 none 설정*/
+    z-index: 1;
+}
+.subMenu a {
+    padding: 10px;
+}
+/*.subMenu a:hover { 안해도 될 거 같음
+    background: dodgerblue; color: white;
+    text-decoration: none;
+}*/
+
+/**********************************************/
+
+/*슬라이드*/
+#sliding {
+    position: relative;
+    height: 350px;
+    border: 3px solid red;
+    overflow: hidden;
+}
+#sliding h1 {  /*배경색, 여백, 그림자 등등 임의로 설정함. 나중에 보기 좋게 다시 설정하기*/
+    position: absolute;  /*가장 표면 위로 올라가게 ==>슬라이드 하기 위해 position 설정*/
+    background: white;
+    padding: 50px 150px;
+    border-radius: 20px;
+    box-shadow: 0 0 5px black;
+    top: 27%;  /*position설정을 안했어서 브라우저 맨 위쪽이 0이 됨. 부모 #sliding에 position 설정함*/
+    left: 26%;
+    z-index: 1;
+}
+/*애니메이션 부분 (==>js에서 설정)*/
+#sliding div {
+    display: flex;
+    width: 3300px;
+    position: relative;   /*좌표이동에 필수. 애니메이션 하기 위해 설정*/
+}
+#sliding img {
+    width: 1100px; height: 350px;
+}
+
+/*********************************/
+
+/*메인*/
+main {
+    display: flex;
+    position: relative;
+    padding-top: 80px;
+    height: 500px;  /*컨텐츠 높이 500픽셀 (=>시험지에서)*/
+}
+/*메인 요소의 모든 자식 요소들
+main>*:not(#popup, #icons){  /* main>* :not(#popup)처럼 *쓰고 띄어쓰기 하고 :not하면 결과가 다름!! 아예 모든 요소에 border생김
+    flex: 1;  /*1대 1대 1의 너비 (즉, 1/3씩의 너비)
+    너비 비율 변경해서 지움. 공지사항1:협력사0.8:아이콘0.6으로 변경
+}*/
+main>section:nth-child(1), main>section:nth-child(2) { /*(1)다음에 ,하고 전체 작성해야 적용됨 ,:nth-child(2)하면 결과 다름*/
+    margin-right: 60px;
+}
+
+/*공지사항*/
+#notice {
+    flex:1;
+}
+#notice h2 {
+    border-bottom: 3px solid #ccc;
+    padding: 5px;
+}
+#notice ul {
+    margin-top: 15px;
+    list-style-position: inside;
+}
+#notice li a {
+    display: inline-block;
+    padding: 7px;
+}
+#notice li span {
+    float: right;
+    padding-top: 10px;
+}
+
+/*협력사 콘텐츠*/
+#partner {
+    flex: 0.8;
+}
+#partner h2 {
+    border-bottom: 3px solid #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 15px;  /*이미지 밀어냄*/
+}
+#partner>div {
+    display: flex;
+    align-items: center;  /*세로정렬: 가운데;  되면서 쪼그라듦*/
+    justify-content: center;  /*가로정렬: 가운데;*/
+    margin-top: 20px;
+}
+#partner section {
+    background: gray;
+    color: white;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    padding-top: 12.5%;
+    text-align: center;
+    letter-spacing: -0.2pt;
+}
+#partner h3 {
+    padding: 7px;
+}
+#partner ul {
+    list-style-position: inside;
+    margin-left: 20px;
+    line-height: 150%;
+}
+#partner ul a {
+    display: inline-block;
+}
+
+/*아이콘형 콘텐츠*/
+#icons {
+    flex: 0.8;
+    padding-top: 30px;
+}
+#icons h2 {
+    display: none;
+}
+#icons div {
+    text-align: right;  /*자식 요소들을 부모인 '나'의 오른쪽에 배치하겠다는 의미*/
+}
+#icons a {
+    border: 2px solid tomato;
+    display: inline-block;
+}
+
+/********************************/
+
+/*팝업*/
+#popup {
+    position: absolute;  /*absolute는 flex기능에서 제외됨*/
+    background: white;
+    left: 20%; top: -100px;
+    width: 60%; padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px black;
+    display: none;
+}
+#popup button {
+    float: right;
+    margin-top: 10px;
+    padding: 3px 6px;
+}
+
+/****************************/
+
+footer {
+    height: 150px;
+    background: lightgray;
+    padding: 20px;
+}
+footer>ul {
+    display: flex;
+    list-style-type: none;
+}
+footer li {
+    flex: 1;
+    text-align: center;
+    line-height: 180%;
+}
+footer a {
+    display: inline-block;
+}
+footer li:nth-of-type(2), footer li:last-of-type {
+    text-align: left;
+    padding-left: 7.5%;
+}

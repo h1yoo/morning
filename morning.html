@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>아침고요펜션</title>
+        <script src="js/jquery-1.12.3.js"></script>
+        <script src="js/morning.js"></script>
+        <link href="css/morning.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="layout">
+            <header> <!--상단부분 (==로고 & 메뉴들)-->
+                <a href="#"><img src="images/logo.jpg" alt="로고"></a>
+                <!--<a>는 하이퍼링크의 용도를 가지고 있는 요소임==임시 링크 걸어줘야 함(href="#"과 같이)-->
+                <nav> <!--메뉴 시작(전체)-->
+                    <a href="#" class="mainMenu">펜션소개</a>  <!--메뉴 속 펜션소개 == 하위(sub)메뉴 없음-->
+                    <div> <!--룸 미리보기 메뉴 시작-->
+                        <a href="#" class="mainMenu">룸 미리보기</a> <!--메뉴 속 룸 미리보기 메뉴== 하위메뉴 있음-->
+                        <nav class="subMenu"> <!--하위(sub)메뉴 == 4개  (css설정 시 보다 편리하게 하기 위해 class 설정)-->
+                            <a href="#">사랑 하나</a>
+                            <a href="#">설렘 둘</a>
+                            <a href="#">아침 한 스푼</a>
+                            <a href="#">고요 두 스푼</a>
+                        </nav>       <!--룸 미리보기의 하위메뉴 끝-->
+                    </div> <!--룸 미리보기 메뉴 끝-->
+                    <div> <!--커뮤니티 메뉴 시작-->
+                        <a href="#" class="mainMenu">커뮤니티</a> <!--메뉴 속 커뮤니티 메뉴== 하위메뉴 있음-->
+                        <nav class="subMenu">  <!--하위(sub)메뉴 == 3개-->
+                            <a href="#">예약하기</a>
+                            <a href="#">문의하기</a>
+                            <a href="#">갤러리</a>
+                        </nav>       <!--커뮤니티의 하위메뉴 끝-->
+                    </div> <!--커뮤니티 메뉴 끝-->
+                </nav> <!--메뉴 끝(전체)-->
+            </header>
+            <section id="sliding"> <!--배너 시작-->
+                <h1>  <!--배너에 글씨-->
+                    당신을 위한 힐링타임<br>
+                    아침고요펜션과 함께 하세요.
+                </h1>
+                <div>
+                    <img src="images/banner_1.jpg" alt="배너이미지">
+                    <img src="images/banner_2.jpg" alt="배너이미지">
+                    <img src="images/banner_3.jpg" alt="배너이미지">
+                </div>
+            </section> <!--배너 끝-->
+            <main>
+                <section id="notice"> <!--공지사항 시작-->
+                    <h2>공지사항</h2>
+                    <ul>
+                        <li>
+                            <a href="#" class="show">진짜 아기랑 남편이랑 잘 쉬다 왔어요!!</a>
+                            <span>2018-03-25</span>
+                        </li>
+                        <li>
+                            <a href="#">엄청 만족합니다~</a>
+                            <span>2018-02-13</span>
+                        </li>
+                        <li>
+                            <a href="#">감사합니다. .</a>
+                            <span>2017-12-09</span>
+                        </li>
+                        <li>
+                            <a href="#">잘 쉬고 왔습니다^^</a>
+                            <span>2017-08-19</span>
+                        </li>
+                        <li>
+                            <a href="#">3일간 머물고 왔습니다.</a>
+                            <span>2017-05-26</span>
+                        </li>
+                        <li> <a href="#">가을에 한번 더 가려고 합니다.</a>  <span>2017-03-07</span> </li>
+                    </ul>
+                </section>  <!--공지사항 끝-->
+                <section id="partner"> <!--협력사는 <main>태그의두 번째 자식 <section>이라고 css에서 설정하기 번거롭고 어려우니까 id 설정해줌-->
+                    <h2>협력사 콘텐츠</h2>
+                    <img src="images/partner.jpg" alt="협력사">
+                    <div>
+                        <section>  <!--<section>은 원래 네모난데 동그랗게 만들 예정임(==<h3>부분)-->
+                            <h3>
+                                사계절 바베큐장<br>
+                                쿡TV & 와이파이
+                            </h3>
+                        </section>
+                        <ul>
+                            <li><a href="#">남이섬 짚 라인</a>     </li>
+                            <li><a href="#">쁘띠 프랑스</a>        </li>
+                            <li><a href="#">자라섬 재즈페스티벌</a> </li>
+                            <li><a href="#">가평 사계절 썰매장</a>  </li>
+                        </ul>
+                    </div>
+                </section>  <!--협력사(partner) 끝-->
+                <section id="icons">
+                    <h2>아이콘형 콘텐츠</h2>
+                    <div>
+                        <a href="#"><img src="images/icon1.png" alt="펜션 알림판"></a>
+                        <a href="#"><img src="images/icon2.png" alt="펜션 행사일정"></a>
+                        <a href="#"><img src="images/icon3.png" alt="사용자 이용규칙"></a>
+                    </div>
+                </section>  <!--아이콘 콘텐츠 끝-->
+                <section id="popup">  <!--팝업창-->
+                    <h2>팝업배너</h2>
+                    <img src="images/partner.jpg" alt="협력사">
+                    <button type="button">닫기</button>
+                </section> <!--팝업배너 끝-->
+            </main>
+            <footer>  <!--하단정보-->
+                <ul>  <!--<li> 세 개가 가로방향으로 만들어짐(기본이 가로방향. 변경하려면 css에서 flex-direction:column;)-->
+                    <li>  <!--<li>속 <a>는 세로방향으로 만들어짐(==>리스트니까)-->
+                        <a href="#">법적고지</a><br>
+                        <a href="#">개인정보보호방침</a><br>
+                        <a href="#">개인정보처리방침</a><br>
+                    </li>
+                    <li>  <!--리스트2-->
+                        입금: 농협 302-1051-7449-71 최주희<br>
+                        문의전화: 010-8949-1927<br>
+                        이메일: <a href="#">master@mpension.co.kr</a><br>
+                        주소: 지경기 가평군 상면 수목원로 380
+                    </li>
+                    <li>  <!--리스트3-->
+                        상호명: 주식회사 비즈온네트웍스<br>
+                        사업자등록번호: 244-87-00033<br>
+                        대표자: 이희민<br>
+                        <a href="#">사이트제작: 비즈온네트웍스</a>
+                    </li>
+                </ul>
+            </footer>
+        </div>
+    </body>
+</html>
